@@ -1,3 +1,9 @@
+let stageHandSprite: Sprite = null
+let bgSingerSprite2: Sprite = null
+let bgSingerSprite: Sprite = null
+let performerQuote = ""
+let performerSprite: Sprite = null
+let isInstrumentalist = false
 scene.setBackgroundImage(img`
     eeeee2222222222222222222222222222222222ee2222ee2222ee2222222eeeee2222222222222222222222222222222222ee22222eeee222ee2eeeee2222222222222222222222222222222222ee222
     222eeeee22222222222222222222222222222eee2222eeee2222ee222222222eeeee22222222222222222222222222222eee2222eeeee222ee22222eeeee22222222222222222222222222222eee2222
@@ -120,3 +126,154 @@ scene.setBackgroundImage(img`
     222222e2ebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbe2e222222
     222222eeebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbeee222222
     `)
+let theoryTest = game.askForNumber("How many flats in Bb minor?", 1)
+if (theoryTest == 5) {
+    isInstrumentalist = game.ask("Do you play an instrument?", "A: Yes  B: No")
+    if (isInstrumentalist) {
+        performerSprite = sprites.create(img`
+            . f f . . . . f f . . . f f . . 
+            . f . . . f f 4 4 f f . . f . . 
+            f f . . f 5 4 5 5 4 5 f . f f f 
+            f f . f e 4 5 5 5 5 4 e f . f f 
+            . . f b 3 e 4 4 4 4 e 3 b f . . 
+            . f e 3 3 3 3 3 3 3 3 3 3 e f . 
+            . f 3 3 e b 3 e e 3 b e 3 3 f . 
+            . f b 3 f f e e e e f f 3 b f . 
+            f f b b f b f e e f b f b b f f 
+            f b b b e 1 f 4 4 f 1 e b b b f 
+            . f b b f 4 4 4 4 4 e e b b f . 
+            . . f e f b d d d e 4 4 4 f . . 
+            . . e 4 c d d d d e 4 4 e f . . 
+            . . e f b b d b d d e e f . . . 
+            . . . f f 1 1 d 1 d 1 f f . . . 
+            . . . . . f b b f f f . . . . . 
+            `, SpriteKind.Player)
+        performerQuote = "laaa LAAAA LAAAA"
+        performerSprite.setPosition(80, 95)
+        performerSprite.say(performerQuote)
+        music.playMelody("C C C E E E G G ", 80)
+        music.playMelody("G C5 C5 C5 - - - - ", 80)
+        pause(200)
+        bgSingerSprite = sprites.createProjectileFromSprite(img`
+            . . . f f f f f . . . . . 
+            . f f f f f f f f f . . . 
+            . f f f f f f c f f f . . 
+            f f f f c f f f c f f . . 
+            f c f f c c f f f c c f f 
+            f c c f f f f e f f f f f 
+            f f f f f f f e e f f f . 
+            f f e e f b f e e f f . . 
+            . f e 4 e 1 f 4 4 f . . . 
+            . f f f e 4 4 4 4 f . . . 
+            . . f e e e e e f f . . . 
+            . . e 4 4 e 7 7 7 f . . . 
+            . . e 4 4 e 7 7 7 f . . . 
+            . . f e e f 6 6 6 f . . . 
+            . . . f f f f f f . . . . 
+            . . . . f f f . . . . . . 
+            `, bgSingerSprite, 90, 95)
+        bgSingerSprite.say(performerQuote.substr(0, 4))
+        bgSingerSprite2 = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . 
+            . . . f f f f f f . . . 
+            . . f e e e e e f f f . 
+            . f e e e e e e e f f f 
+            f e e e e e e e f f f f 
+            f e e 4 e e e f f f f f 
+            f e e 4 4 e e e f f f f 
+            f f e 4 4 4 4 4 f f f f 
+            . f e 4 4 f f 4 e 4 f f 
+            . . f d d d d 4 d 4 f f 
+            . . f b b d d 4 f f f . 
+            . . f e 4 4 4 e d d 4 . 
+            . . f 1 1 1 1 e d d e . 
+            . f f 6 6 6 6 f e e f . 
+            . f f f f f f f f f f . 
+            . . f f f . . . f f . . 
+            `, bgSingerSprite2, -90, 95)
+        bgSingerSprite2.say(performerQuote.substr(0, 4))
+        music.playMelody("C5 B C5 C5 - - - - ", 80)
+    } else {
+        stageHandSprite = sprites.create(img`
+            . . . . . . . . . . . . . . 
+            . . . . . c c d c . . . . . 
+            . . . b b f f f f c c . . . 
+            . . c f f f f f f f f d . . 
+            . c f f f f f f f f f f b . 
+            c b f f f d b b d f f f b c 
+            f f f f b 4 4 4 4 b f f f f 
+            f f f c c 4 4 4 4 c c f f f 
+            f b b f b f 4 4 f b f b b f 
+            f b b e 1 f d d f 1 e b b f 
+            c f b f d d d d d 4 4 b f c 
+            . c e c 6 8 8 8 4 d d d c . 
+            . e 4 c 8 8 8 8 4 d d 4 c . 
+            . e c 6 6 9 6 6 6 e e c . . 
+            . . c c 9 9 6 9 6 9 c c . . 
+            . . . . c 6 6 c c c . . . . 
+            `, SpriteKind.Player)
+        performerSprite = sprites.create(img`
+            . f f . . . . f f . . . f f . . 
+            . f . . . f f 4 4 f f . . f . . 
+            f f . . f 5 4 5 5 4 5 f . f f f 
+            f f . f e 4 5 5 5 5 4 e f . f f 
+            . . f b 3 e 4 4 4 4 e 3 b f . . 
+            . f e 3 3 3 3 3 3 3 3 3 3 e f . 
+            . f 3 3 e b 3 e e 3 b e 3 3 f . 
+            . f b 3 f f e e e e f f 3 b f . 
+            f f b b f b f e e f b f b b f f 
+            f b b b e 1 f 4 4 f 1 e b b b f 
+            . f b b f 4 4 4 4 4 e e b b f . 
+            . . f e f b d d d e 4 4 4 f . . 
+            . . e 4 c d d d d e 4 4 e f . . 
+            . . e f b b d b d d e e f . . . 
+            . . . f f 1 1 d 1 d 1 f f . . . 
+            . . . . . f b b f f f . . . . . 
+            `, SpriteKind.Player)
+        performerSprite.setPosition(80, 95)
+        stageHandSprite.setPosition(27, 87)
+        stageHandSprite.say("And...action!")
+        music.playMelody("D F A D D E C - ", 200)
+    }
+} else {
+    stageHandSprite = sprites.create(img`
+        . . . . . . . . . . . . . . 
+        . . . . . c c d c . . . . . 
+        . . . b b f f f f c c . . . 
+        . . c f f f f f f f f d . . 
+        . c f f f f f f f f f f b . 
+        c b f f f d b b d f f f b c 
+        f f f f b 4 4 4 4 b f f f f 
+        f f f c c 4 4 4 4 c c f f f 
+        f b b f b f 4 4 f b f b b f 
+        f b b e 1 f d d f 1 e b b f 
+        c f b f d d d d d 4 4 b f c 
+        . c e c 6 8 8 8 4 d d d c . 
+        . e 4 c 8 8 8 8 4 d d 4 c . 
+        . e c 6 6 9 6 6 6 e e c . . 
+        . . c c 9 9 6 9 6 9 c c . . 
+        . . . . c 6 6 c c c . . . . 
+        `, SpriteKind.Player)
+    performerSprite = sprites.create(img`
+        . f f . . . . f f . . . f f . . 
+        . f . . . f f 4 4 f f . . f . . 
+        f f . . f 5 4 5 5 4 5 f . f f f 
+        f f . f e 4 5 5 5 5 4 e f . f f 
+        . . f b 3 e 4 4 4 4 e 3 b f . . 
+        . f e 3 3 3 3 3 3 3 3 3 3 e f . 
+        . f 3 3 e b 3 e e 3 b e 3 3 f . 
+        . f b 3 f f e e e e f f 3 b f . 
+        f f b b f b f e e f b f b b f f 
+        f b b b e 1 f 4 4 f 1 e b b b f 
+        . f b b f 4 4 4 4 4 e e b b f . 
+        . . f e f b d d d e 4 4 4 f . . 
+        . . e 4 c d d d d e 4 4 e f . . 
+        . . e f b b d b d d e e f . . . 
+        . . . f f 1 1 d 1 d 1 f f . . . 
+        . . . . . f b b f f f . . . . . 
+        `, SpriteKind.Player)
+    performerSprite.setPosition(80, 95)
+    stageHandSprite.setPosition(27, 87)
+    stageHandSprite.say("And...action!")
+    music.playMelody("D F A D D E C - ", 200)
+}
